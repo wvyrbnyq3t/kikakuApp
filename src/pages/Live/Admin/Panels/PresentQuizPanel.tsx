@@ -12,7 +12,6 @@ import Flexbox from "../../../../components/Flexbox";
 import { useLiveEventContext } from "../../../../features/live/hooks/useLiveEventContext";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useAnswers } from "../../../../features/live/hooks/useAnswers";
 
 // types
 import { Section, SectionTitle } from "../../../../components/Section";
