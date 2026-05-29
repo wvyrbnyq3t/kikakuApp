@@ -99,9 +99,6 @@ const Home = () => {
             <Link to="/create-event">新しいイベントを作る</Link>
           </Button>
         </Section>
-        <Section>
-          <Link to="/demo">デモページへ</Link>
-        </Section>
       </PageContent>
     </>
   );
