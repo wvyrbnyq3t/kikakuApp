@@ -36,25 +36,19 @@ type MergedDataType = UserDataType & {
 };
 
 const PresentQuizPanel = () => {
-  const { eventData, quizzesData, usersData, quizData, status } =
+  const { eventData, quizzesData, usersData, quizData, status, answersData } =
     useLiveEventContext();
   const { isAuthLoading } = useUserAuth();
   const [answers, setAnswers] = useState<MergedDataType[] | null>(null);
   const { eventId } = useParams();
 
-  // リアルタイムで答えを取得
-  const realtimeAnswers = useAnswers(
-    eventId || "",
-    eventData?.currentQuizId || "",
-  );
-
   useEffect(() => {
     if (!quizzesData || !usersData) return;
 
-    const mergedData = mergeUsersWithAnswers(usersData, realtimeAnswers || []);
+    const mergedData = mergeUsersWithAnswers(usersData, answersData || []);
 
     setAnswers(mergedData as MergedDataType[]);
-  }, [realtimeAnswers, usersData, quizzesData]);
+  }, [answersData, usersData, quizzesData]);
 
   if (status === "loading" || isAuthLoading || !eventData) return <Loading />;
 
@@ -146,7 +140,7 @@ const PresentQuizPanel = () => {
               <ul>
                 {answers
                   .filter((t: any) => {
-                    !t.answer && t.role === "player";
+                    return t.role == "player" && !t.answer;
                   })
                   .map((answer: MergedDataType) => (
                     <li
