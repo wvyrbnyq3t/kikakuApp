@@ -1,0 +1,51 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    function isSignInWithGoogle() {
+      return isSignedIn() && request.auth.token.firebase.sign_in_provider == 'google.com';
+    }
+    function getEventPath(eventId) {
+      return /databases/$(database)/documents/events/$(eventId);
+    }
+    function getEventUserPath(eventId, userId) {
+      return /databases/$(database)/documents/events/$(eventId)/users/$(userId);
+    }
+    function isEventOwner(eventId) {
+      return isSignedIn() && get(getEventPath(eventId)).data.ownerId == request.auth.uid;
+    }
+    function isEntryEvent(eventId, userId) {
+      return isSignedIn() && exists(getEventUserPath(eventId, userId));
+    }
+    function isPlayer(eventId, userId) {
+      return isEntryEvent(eventId, userId) && get(getEventUserPath(eventId, userId)).data.role == "player";
+    }
+
+    match /events/{eventId} {
+      allow read: if true;
+      allow create: if isSignInWithGoogle();
+      allow update, delete: if isSignInWithGoogle() && isEventOwner(eventId);
+
+      match /quizzes/{quizId} {
+        allow read: if true;
+        allow write: if isSignedIn() && isEventOwner(eventId);
+
+        match /answers/{answerId} {
+          allow read: if true;
+          allow create, update: if isEventOwner(eventId) || isPlayer(eventId, request.auth.uid) && request.resource.data.userId == request.auth.uid;
+          allow delete: if isEventOwner(eventId);
+        }
+      }
+      match /users/{userId} {
+        allow read: if true;
+        allow create: if isSignedIn() && request.resource.data.role in ["player", "spectator"] && request.auth.uid == userId;
+        allow update: if isEventOwner(eventId) || ( request.auth.uid == userId && resource.data.role in ["player", "spectator"] && request.resource.data.userId == resource.data.userId && request.resource.data.role == resource.data.role);
+        allow delete: if isEventOwner(eventId) || ( request.auth.uid == userId && resource.data.userId == request.auth.uid && resource.data.role in ["player", "spectator"] );
+      }
+    }
+  }
+}

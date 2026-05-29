@@ -1,0 +1,13 @@
+.c-dialog {
+  :where(.c-dialog__inner) {
+    background-color: #ffffff;
+    margin-inline: auto;
+    max-height: calc(100dvh - var(--pdng-md) * 2);
+    overflow: hidden auto;
+    width: calc(min(100dvw, var(--w-pc)) - var(--space-md) * 2);
+  }
+}
+
+dialog::backdrop {
+  backdrop-filter: blur(0.4rem);
+}

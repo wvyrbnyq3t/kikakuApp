@@ -1,0 +1,192 @@
+:where(.c-formField) {
+  display: grid block;
+  gap: var(--space-xs);
+}
+
+:where(.c-form__label) {
+  font-size: 1.25em;
+  font-weight: 700;
+}
+
+.c-form__text {
+  width: 100%;
+
+  :where(input[type="text"]) {
+    border: 0.2rem solid var(--c-deactive);
+    border-radius: 0.8rem;
+    display: inline-block;
+    line-height: 1;
+    padding: 1em;
+    width: 100%;
+
+    &.is--filled {
+      border-color: var(--c-active);
+    }
+    &:focus-visible {
+      outline: 0.1rem solid var(--c-active);
+    }
+  }
+}
+
+.c-form__textarea {
+  :where(textarea) {
+    border: 0.2rem solid var(--c-deactive);
+    border-radius: 0.8rem;
+    display: inline-block;
+    padding: 1em;
+    width: 100%;
+
+    &.is--filled {
+      border-color: var(--c-active);
+    }
+    &:focus-visible {
+      outline: 0.1rem solid var(--c-active);
+    }
+  }
+}
+
+.c-form__select {
+  :where(select) {
+    appearance: none;
+    border: 0.2rem solid var(--c-deactive);
+    border-radius: 0.8rem;
+    display: inline-block;
+    line-height: 1;
+    padding: 1em;
+    width: 100%;
+
+    &.is--selected {
+      border-color: var(--c-active);
+    }
+    &:focus-visible {
+      outline: 0.1rem solid var(--c-active);
+    }
+  }
+}
+
+.c-form__radio {
+  --sz-radio: 2.4rem;
+
+  :where(label) {
+    cursor: pointer;
+    display: flex block;
+    align-items: center;
+    gap: 1em;
+    user-select: none;
+
+    :where(input[type="radio"]) {
+      appearance: none;
+      border: 0.2rem solid var(--c-deactive);
+      border-radius: 99rem;
+      display: block;
+      flex: 0 0 auto;
+      height: var(--sz-radio);
+      width: var(--sz-radio);
+
+      &:checked {
+        border-color: var(--c-active);
+        position: relative;
+
+        &::before {
+          background-color: var(--c-active);
+          border-radius: 99rem;
+          content: "";
+          display: block;
+          height: calc(var(--sz-radio) * 0.625);
+          width: calc(var(--sz-radio) * 0.625);
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
+}
+
+.c-form__checkbox {
+  --sz-checkbox: 2.4rem;
+
+  :where(label) {
+    cursor: pointer;
+    display: flex block;
+    align-items: center;
+    gap: 1em;
+    user-select: none;
+
+    :where(input[type="checkbox"]) {
+      appearance: none;
+      border: 0.2rem solid var(--c-deactive);
+      border-radius: 0.4rem;
+      display: block;
+      flex: 0 0 auto;
+      height: var(--sz-checkbox);
+      width: var(--sz-checkbox);
+
+      &:checked {
+        background-color: var(--c-lime);
+        border-color: var(--c-lime);
+        position: relative;
+
+        &::before {
+          color: #ffffff;
+          content: "check";
+          height: calc(var(--sz-checkbox) * 0.625);
+          width: calc(var(--sz-checkbox) * 0.625);
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          font-family: "material symbols outlined";
+          font-style: normal;
+          font-size: calc(var(--sz-checkbox) * 0.75);
+          font-variation-settings: "wght" 700;
+          font-weight: normal;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          line-height: 1;
+          text-transform: none;
+          letter-spacing: normal;
+          word-wrap: normal;
+          white-space: nowrap;
+          direction: ltr;
+          vertical-align: -11.5%;
+        }
+      }
+      &:disabled {
+        background-color: var(--c-deactive);
+        border-color: var(--c-deactive);
+        position: relative;
+
+        &::before {
+          color: #ffffff;
+          content: "close";
+          height: calc(var(--sz-checkbox) * 0.625);
+          width: calc(var(--sz-checkbox) * 0.625);
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          font-family: "material symbols outlined";
+          font-style: normal;
+          font-size: calc(var(--sz-checkbox) * 0.75);
+          font-variation-settings: "wght" 700;
+          font-weight: normal;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          line-height: 1;
+          text-transform: none;
+          letter-spacing: normal;
+          word-wrap: normal;
+          white-space: nowrap;
+          direction: ltr;
+          vertical-align: -11.5%;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,135 @@
+:root {
+  --bgc-active-hover: #f1f8fe;
+
+  --c-active: #3caadf;
+  --c-deactive: #a0a0a0;
+  --c-lime: #1ab24e;
+  --c-primary: #07c;
+  --c-red: #ff4029;
+  --c-text: #4e4e4e;
+
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+
+  --w-pc: 500px;
+
+  font-size: 10px;
+}
+
+body {
+  background-color: #ffffff;
+  color: var(--c-text);
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+  height: 100%;
+  width: 100%;
+  min-height: 100dvh;
+  position: relative;
+  z-index: 0;
+}
+
+:where(a:any-link) {
+  &:focus-visible {
+    outline: 0.1rem solid var(--c-active);
+  }
+}
+
+.l-page {
+  background-color: #ffffff;
+  box-shadow: 0 0 0.1rem #333333;
+  display: flex block;
+  flex-direction: column;
+  height: 100%;
+  width: min(100%, var(--w-pc));
+  margin-inline: auto;
+  min-height: 100dvh;
+  position: relative;
+  z-index: 1;
+}
+
+.l-page-header {
+  display: flex block;
+  align-items: center;
+  padding: calc(var(--space-sm) + env(safe-area-inset-top)) var(--space-md)
+    var(--space-sm);
+  top: 0;
+  z-index: 10;
+}
+
+.l-page-header--sticky {
+  background-color: #ffffff;
+  position: sticky;
+  left: 0;
+  width: 100%;
+}
+.l-page-header--fixed {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100%, var(--w-pc));
+  z-index: 10;
+}
+
+.l-page-header__title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.l-page-content {
+  flex: 1;
+}
+
+.l-page-footer {
+  padding: var(--space-md);
+  padding-bottom: calc(var(--space-md) + env(safe-area-inset-bottom));
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.l-section {
+  display: grid block;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+}
+.l-container {
+  display: grid block;
+  padding: var(--space-sm);
+}
+
+.l-flexbox {
+  --sz-gap: var(--space-sm);
+  display: flex block;
+  align-items: center;
+  gap: var(--sz-gap);
+
+  :where(& > *) {
+    flex: 0 1 auto;
+    max-width: 100%;
+  }
+  :where(p) {
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+}
+
+.l-grid-container {
+  display: grid block;
+  grid-template-columns: repeat(var(--grid-columns, 1), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--grid-rows, 1), minmax(0, 1fr));
+  gap: var(--grid-gap);
+}

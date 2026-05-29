@@ -1,0 +1,107 @@
+.l-sp {
+  background-color: #ffffff;
+  display: flex block;
+  flex-direction: column;
+  gap: var(--space-md);
+  font-size: 2rem;
+  height: 1000dvh;
+  width: 100dvw;
+  overflow: hidden;
+  padding: var(--space-md);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+}
+
+.l-sp__title {
+  text-align: center;
+}
+
+.l-sp__quizTitle {
+  display: flex block;
+  align-items: center;
+  gap: 0.5em;
+  position: relative;
+
+  &::before {
+    content: "Q.";
+    color: var(--c-primary);
+    flex: 0 0 auto;
+    font-family: "Google Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-size: 1.5em;
+    font-style: normal;
+    font-variation-settings: "GRAD" 0;
+  }
+}
+
+.p-options-list {
+  display: grid block;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.p-option__item {
+  box-shadow: 0 0 0.1rem #333333;
+  border-radius: 0.8rem;
+  display: flex block;
+  align-content: center;
+  gap: var(--space-md);
+  overflow: hidden;
+  padding: var(--space-md);
+
+  :where(.p-option__item-number) {
+    background-color: var(--c-primary);
+    border-radius: 99rem;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    font-size: 1.2em;
+    height: 2em;
+    width: 2em;
+  }
+  :where(.p-option__itme-label) {
+    font-size: 1.2em;
+    font-weight: 700;
+  }
+}
+
+.p-answersList {
+  display: grid block;
+  gap: var(--space-md);
+  grid-template-columns: repeat(3, 1fr);
+
+  :where(.p-answersList__item) {
+    box-shadow: 0 0 0.1rem #333333;
+    border-radius: 0.8rem;
+    padding: var(--space-md);
+
+    &.is--correct {
+      background-color: var(--c-lime);
+      color: #ffffff;
+    }
+    &.is--incorrect {
+      background-color: var(--c-red);
+      color: #ffffff;
+    }
+    :where(.p-answersList__item-answer) {
+      font-size: 1.2em;
+      font-weight: 700;
+    }
+  }
+}
+
+.p-usersList {
+  display: grid block;
+  gap: var(--space-md);
+  grid-template-columns: repeat(3, 1fr);
+
+  .p-usersList__item {
+    box-shadow: 0 0 0.1rem #333333;
+    border-radius: 0.8rem;
+    padding: var(--space-md);
+  }
+}

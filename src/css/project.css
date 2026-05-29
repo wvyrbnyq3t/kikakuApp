@@ -1,0 +1,22 @@
+:where(.p-quizInfo__title) {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.25rem;
+  position: relative;
+  width: 100%;
+
+  &::before {
+    content: "Q.";
+    color: var(--c-primary);
+    flex: 0 0 auto;
+    font-family: "Google Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-size: 1.5em;
+    font-style: normal;
+    font-variation-settings: "GRAD" 0;
+  }
+}
+
+:where(.p-quizInfo__description) {
+  margin-left: 3.25em;
+}
