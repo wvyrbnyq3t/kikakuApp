@@ -35,7 +35,7 @@ const ReadyPanel = () => {
             icon="link_2"
             onClick={() => {
               navigator.clipboard.writeText(
-                `${window.location.origin}/RecreationApp/#/events/${eventData?.eventId}/live/player`,
+                `${window.location.origin}/kikakuApp/#/events/${eventData?.eventId}/live/player`,
               );
               showToast({
                 title: "参加URLをコピーしました",

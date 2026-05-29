@@ -16,6 +16,7 @@ import type { EventDataType } from "../features/events/types/eventTypes";
 import Flexbox from "../components/Flexbox";
 import { Avatar, AvatarImage } from "../components/Avatar";
 import { signInWithGoogle } from "../features/auth/api/authApi";
+import { Loading } from "../components/Loading";
 
 const Home = () => {
   const [events, setEvents] = useState<EventDataType[]>([]);
@@ -28,6 +29,8 @@ const Home = () => {
   useEffect(() => {
     onMounted();
   }, [isAuthLoading]);
+
+  if (isAuthLoading || !events) return <Loading />;
 
   return (
     <>

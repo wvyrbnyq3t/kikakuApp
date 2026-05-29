@@ -24,7 +24,7 @@ import { useToast } from "../components/Toast";
 import RequiredSignIn from "./RequiredSignIn";
 
 const CreateNewEvent = () => {
-  const { authUser } = useUserAuth();
+  const { authUser, isAuthLoading } = useUserAuth();
   const { showToast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [eventData, setEventData] = useState<{
@@ -36,9 +36,10 @@ const CreateNewEvent = () => {
   });
   const nav = useNavigate();
 
-  if (isSubmitting) {
+  if (isAuthLoading || isSubmitting) {
     return <Loading />;
   }
+
   if (!authUser) return <RequiredSignIn />;
 
   return (
